@@ -19,7 +19,7 @@ namespace Snoop.Shell
     /// </summary>
     public partial class EmbeddedShellView : UserControl
     {
-        public event Action<VisualTreeItem> ProviderLocationChanged;
+        public event Action<VisualTreeItem> ProviderLocationChanged = delegate { }; 
 
         private readonly Runspace runspace;
         private readonly SnoopPSHost host;
@@ -30,10 +30,6 @@ namespace Snoop.Shell
             InitializeComponent();
 
             this.commandTextBox.PreviewKeyDown += OnCommandTextBoxPreviewKeyDown;
-            ToolTipService.SetToolTip(this.commandTextBox, @"
-F5 - Reload profile
-F12 - Clear output
-");
 
             // ignore execution-policy
             var iis = InitialSessionState.CreateDefault();
